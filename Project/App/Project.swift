@@ -135,6 +135,9 @@ let app = Target.target(
     buildableFolders: [
         "App/Sources",
     ],
+    entitlements: .dictionary([
+        "com.apple.developer.devicecheck.appattest-environment": "production",
+    ]),
     scripts: [
         .pre(
             path: .relativeToRoot("Scripts/generate_licenses.sh"),
@@ -160,6 +163,7 @@ let app = Target.target(
         .target(name: "Presentation"),
         .target(name: "Domain"),
         .target(name: "Data"),
+        .package(product: "FirebaseAppCheck"),
         .package(product: "FirebaseAnalyticsCore"),
         .package(product: "FirebaseCrashlytics"),
     ],
@@ -260,6 +264,9 @@ let project = Project(
                 configuration: .debug,
                 executable: "CCRecorder",
                 arguments: .arguments(
+                    environmentVariables: [
+                        "AppCheckDebugToken": "$(APP_CHECK_DEBUG_TOKEN)",
+                    ],
                     launchArguments: [
                         .launchArgument(
                             name: "-FIRDebugEnabled",
