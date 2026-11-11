@@ -1,15 +1,42 @@
 # Firebase 관측성
 
-CCRecorder는 Firebase Crashlytics와 Google Analytics의 기본 관측성만 사용한다.
+CCRecorder는 Firebase Crashlytics와 Google Analytics의 기본 관측성을 사용하고,
+Firebase App Check로 Firebase 리소스 요청의 앱 무결성을 검증한다.
 
 ## 적용 범위
 
 - Firebase Apple SDK `13.1.1`
-- `FirebaseCrashlytics`, `FirebaseAnalyticsCore`
+- `FirebaseCrashlytics`, `FirebaseAnalyticsCore`, `FirebaseAppCheck`
 - Firebase 초기화와 Analytics·CrashReporting 서비스 경계
 - Debug·Release dSYM 생성과 Crashlytics 심볼 업로드
 
 커스텀 Analytics 이벤트·사용자 속성, Crashlytics 커스텀 키·로그·사용자 ID, Remote Config와 Performance Monitoring은 사용하지 않는다.
+
+## App Check
+
+`AppCheckService`가 `FirebaseService`보다 먼저 실행되어 Firebase 초기화 전에 빌드 환경에 맞는 provider를 등록한다.
+
+| 환경 | Provider | 비고 |
+| --- | --- | --- |
+| Debug·Simulator·CI | App Check debug provider | Firebase Console에 등록한 debug token 사용 |
+| TestFlight·App Store | App Attest | production entitlement 사용 |
+
+- debug token은 소스 코드나 설정 파일에 넣지 않는다.
+- 로컬 Simulator는 Xcode 콘솔에 출력된 token을 Firebase Console의 Manage debug tokens에 등록한다.
+- CI token은 Firebase Console에서 별도로 발급해 Xcode Cloud의 secret 환경 변수
+  `APP_CHECK_DEBUG_TOKEN`으로 저장한다. 생성된 App 스킴은 이를 런타임 환경 변수
+  `AppCheckDebugToken`으로 전달하며, 로컬에서는 이 값을 설정하지 않는다.
+- token이 노출되면 Firebase Console에서 즉시 삭제하고 새 token을 등록한다.
+
+### Firebase Console 설정
+
+1. Security → App Check에서 Bundle ID `com.pseapplications.CasualConversation` 앱을 선택한다.
+2. App Attest provider와 Apple Developer Team ID를 등록한다.
+3. v2.0.0 배포 후 App Check metrics에서 정상 요청 비율과 구버전 사용 비율을 확인한다.
+4. 정상 사용자가 차단되지 않는 것을 확인한 뒤 사용하는 Firebase 제품별 enforcement를 활성화한다.
+
+기존 앱 버전은 App Check token을 보내지 않으므로 v2.0.0 배포와 동시에 enforcement를 활성화하지 않는다.
+문제가 생기면 Firebase Console에서 해당 제품의 enforcement를 비활성화해 롤백한다.
 
 ## 수집 정책
 
@@ -44,5 +71,7 @@ Tuist App 스킴에는 `-FIRDebugEnabled`와 `-FIRDebugDisabled`를 체크 해�
 
 - [Firebase Apple SDK 설정](https://firebase.google.com/docs/ios/setup)
 - [Firebase API 키 관리](https://firebase.google.com/docs/projects/api-keys)
+- [App Attest로 App Check 시작](https://firebase.google.com/docs/app-check/ios/app-attest-provider)
+- [Apple 플랫폼 App Check debug provider](https://firebase.google.com/docs/app-check/ios/debug-provider)
 - [Crashlytics Apple 플랫폼 시작](https://firebase.google.com/docs/crashlytics/ios/get-started)
 - [Firebase의 App Store 데이터 공개 안내](https://firebase.google.com/docs/ios/app-store-data-collection)
