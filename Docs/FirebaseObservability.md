@@ -32,11 +32,15 @@ Firebase App Check로 Firebase 리소스 요청의 앱 무결성을 검증한다
 
 1. Security → App Check에서 Bundle ID `com.pseapplications.CasualConversation` 앱을 선택한다.
 2. App Attest provider와 Apple Developer Team ID를 등록한다.
-3. v2.0.0 배포 후 App Check metrics에서 정상 요청 비율과 구버전 사용 비율을 확인한다.
-4. 정상 사용자가 차단되지 않는 것을 확인한 뒤 사용하는 Firebase 제품별 enforcement를 활성화한다.
+3. v2.0.0 배포 후 App Check를 지원하는 Firebase backend 제품을 도입하면 해당 제품의
+   App Check metrics에서 정상 요청 비율과 구버전 사용 비율을 확인한다.
+4. 정상 사용자가 차단되지 않는 것을 확인한 뒤 해당 backend 제품의 enforcement를 활성화한다.
 
-기존 앱 버전은 App Check token을 보내지 않으므로 v2.0.0 배포와 동시에 enforcement를 활성화하지 않는다.
-문제가 생기면 Firebase Console에서 해당 제품의 enforcement를 비활성화해 롤백한다.
+현재 사용하는 Analytics와 Crashlytics는 App Check metrics와 enforcement를 지원하지 않는다.
+따라서 v2.0.0에서는 provider 등록과 token 발급만 검증하고 enforcement를 활성화하지 않는다.
+향후 지원 제품을 도입할 때도 token을 보내지 않는 기존 앱 버전이 남아 있는 동안 enforcement를
+활성화하지 않는다. 활성화 후 문제가 생기면 Firebase Console에서 해당 제품의 enforcement를
+비활성화해 롤백한다.
 
 ## 수집 정책
 
