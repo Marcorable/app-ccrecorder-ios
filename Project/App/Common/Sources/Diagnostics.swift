@@ -24,6 +24,11 @@ public enum Diagnostics {
             }
         }
     }
+
+    public static func configure(_ handler: @escaping Handler) {
+        storage.configure(handler)
+    }
+
 }
 
 extension Diagnostics {
@@ -55,12 +60,8 @@ extension Diagnostics {
 
 extension Diagnostics {
 
-    public static func configure(_ handler: @escaping Handler) {
-        storage.configure(handler)
-    }
-
     public static func log<Event: Diagnostics.Event>(
-        level: Level = .info,
+        of level: Level = .info,
         _ event: @autoclosure () -> Event,
         fileID: StaticString = #fileID,
         function: StaticString = #function,
