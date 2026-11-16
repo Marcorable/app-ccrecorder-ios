@@ -7,3 +7,11 @@ public protocol ManagingNoteUsecase: Sendable {
     func updateNote(_ note: Note) async -> Result<Void, DomainError>
     func deleteNotes(ids: [UUID]) async -> Result<Void, DomainError>
 }
+
+extension DomainError {
+
+    public enum ManagingNoteUsecaseFailure: Error, Sendable {
+        case system(Error)
+    }
+
+}

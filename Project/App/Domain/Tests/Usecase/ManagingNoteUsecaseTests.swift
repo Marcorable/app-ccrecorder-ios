@@ -62,8 +62,8 @@ extension ManagingNoteUsecaseTests {
         }
     }
 
-    @Test("Note 목록을 불러오지 못하면 Data 오류를 반환한다")
-    func loadNotesReturnsDataError() async {
+    @Test("Note 목록을 불러오지 못하면 system 오류를 반환한다")
+    func loadNotesReturnsSystemError() async {
         // given
         await repository.setError(.failed)
 
@@ -73,13 +73,13 @@ extension ManagingNoteUsecaseTests {
         // then
         switch result {
             case .success:
-                Issue.record("Data 오류를 반환해야 합니다.")
+                Issue.record("system 오류를 반환해야 합니다.")
 
-            case .failure(.data(let error)):
+            case .failure(.managingNoteUsecase(.system(let error))):
                 #expect(error is TestError)
 
             case .failure:
-                Issue.record("Data 오류를 반환해야 합니다.")
+                Issue.record("system 오류를 반환해야 합니다.")
         }
     }
 
@@ -114,8 +114,8 @@ extension ManagingNoteUsecaseTests {
         #expect(await repository.updatedNote() == note)
     }
 
-    @Test("Note를 수정하지 못하면 Data 오류를 반환한다")
-    func updateNoteReturnsDataError() async {
+    @Test("Note를 수정하지 못하면 system 오류를 반환한다")
+    func updateNoteReturnsSystemError() async {
         // given
         let note = Note(
             createdDate: .init(),
@@ -131,13 +131,13 @@ extension ManagingNoteUsecaseTests {
         // then
         switch result {
             case .success:
-                Issue.record("Data 오류를 반환해야 합니다.")
+                Issue.record("system 오류를 반환해야 합니다.")
 
-            case .failure(.data(let error)):
+            case .failure(.managingNoteUsecase(.system(let error))):
                 #expect(error is TestError)
 
             case .failure:
-                Issue.record("Data 오류를 반환해야 합니다.")
+                Issue.record("system 오류를 반환해야 합니다.")
         }
     }
 
