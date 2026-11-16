@@ -60,8 +60,8 @@ extension ManagingConversationUsecaseTests {
         #expect(result == conversation)
     }
 
-    @Test("Conversation 조회에 실패하면 Data 오류를 반환한다")
-    func conversationReturnsDataErrorWhenRepositoryFails() async {
+    @Test("Conversation 조회에 실패하면 system 오류를 반환한다")
+    func conversationReturnsSystemErrorWhenRepositoryFails() async {
         // given
         await conversationRepository.setReadError(.failed)
 
@@ -69,8 +69,8 @@ extension ManagingConversationUsecaseTests {
         let result = await usecase.conversation(id: .init())
 
         // then
-        guard case .failure(.data) = result else {
-            Issue.record("Data 오류를 반환해야 합니다.")
+        guard case .failure(.managingConversationUsecase(.system)) = result else {
+            Issue.record("system 오류를 반환해야 합니다.")
             return
         }
     }
@@ -155,11 +155,13 @@ extension ManagingConversationUsecaseTests {
                 content: "Hello",
                 to: conversation.id
             )
-            Issue.record("Data 오류를 던져야 합니다.")
-        } catch {
+            Issue.record("system 오류를 던져야 합니다.")
+        } catch DomainError.managingConversationUsecase(.system) {
             // then
             let note = await noteRepository.createdNote()
             #expect(await noteRepository.deletedIDs() == [note?.id].compactMap { $0 })
+        } catch {
+            Issue.record("예상하지 못한 오류입니다: \(error)")
         }
     }
 

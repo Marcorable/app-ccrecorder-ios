@@ -21,7 +21,8 @@ public protocol ManagingConversationUsecase: Sendable {
 
 extension DomainError {
 
-    public enum ManagingConversationUsecaseFailure: Error, Equatable, Sendable {
+    public enum ManagingConversationUsecaseFailure: Error, Sendable {
+        case system(Error)
         case conversationNotFound
     }
 
