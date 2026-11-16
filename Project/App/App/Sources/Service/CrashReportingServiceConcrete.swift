@@ -1,10 +1,20 @@
 
 import UIKit
 
+import Common
 import Domain
 import FirebaseCrashlytics
 
 actor CrashReportingServiceConcrete {}
+
+private extension CrashReportingServiceConcrete {
+
+    enum Event: String, Diagnostics.Event {
+        case configurationStarted = "configuration.started"
+        case configurationCompleted = "configuration.completed"
+    }
+
+}
 
 extension CrashReportingServiceConcrete: Service {
 
@@ -13,7 +23,9 @@ extension CrashReportingServiceConcrete: Service {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?
     ) -> Bool {
+        Diagnostics.log(Event.configurationStarted)
         configureFirebaseCrashlytics()
+        Diagnostics.log(Event.configurationCompleted)
         return true
     }
 
