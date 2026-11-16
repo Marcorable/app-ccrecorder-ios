@@ -2,6 +2,7 @@
 import AVFAudio
 import Foundation
 
+import Common
 import Domain
 
 actor PlayerServiceConcrete {
@@ -15,6 +16,27 @@ actor PlayerServiceConcrete {
     var rate: Float { player?.rate ?? 1 }
 }
 
+private extension PlayerServiceConcrete {
+
+    enum Event: String, Diagnostics.Event {
+        case prepareStarted = "prepare.started"
+        case prepareCompleted = "prepare.completed"
+        case prepareFailed = "prepare.failed"
+        case playIgnored = "play.ignored"
+        case playbackStarted = "playback.started"
+        case pauseIgnored = "pause.ignored"
+        case playbackPaused = "playback.paused"
+        case playbackFinished = "playback.finished"
+        case seekIgnored = "seek.ignored"
+        case seekCompleted = "seek.completed"
+        case rateChangeIgnored = "rate-change.ignored"
+        case rateChanged = "rate.changed"
+        case playbackCompleted = "playback.completed"
+        case playbackFailed = "playback.failed"
+    }
+
+}
+
 extension PlayerServiceConcrete: Service {
 
 }
@@ -22,6 +44,7 @@ extension PlayerServiceConcrete: Service {
 extension PlayerServiceConcrete: PlayerService {
 
     func prepare(with fileURL: URL) throws(DomainError.PlayerServiceFailure) {
+        Diagnostics.log(Event.prepareStarted)
         do {
             let player = try AVAudioPlayer(contentsOf: fileURL)
             player.enableRate = true
@@ -42,48 +65,68 @@ extension PlayerServiceConcrete: PlayerService {
             player.delegate = delegate
 
             guard player.prepareToPlay() else {
-                throw DomainError.PlayerServiceFailure.prepareFailed
+                throw DomainError.PlayerServiceFailure.prepareToPlayFalse
             }
 
             finish()
             self.player = player
             self.delegate = delegate
-        } catch let error as DomainError.PlayerServiceFailure {
-            throw error
+            Diagnostics.log(Event.prepareCompleted)
         } catch {
-            throw DomainError.PlayerServiceFailure.prepareFailed
+            Diagnostics.log(Event.prepareFailed)
+            if let failure = error as? DomainError.PlayerServiceFailure {
+                throw failure
+            }
+            throw .system(error)
         }
     }
 
     func play() {
-        player?.play()
+        guard let player, player.play() else {
+            Diagnostics.log(Event.playIgnored)
+            return
+        }
+        Diagnostics.log(Event.playbackStarted)
     }
 
     func pause() {
-        player?.pause()
+        guard let player, player.isPlaying else {
+            Diagnostics.log(Event.pauseIgnored)
+            return
+        }
+        player.pause()
+        Diagnostics.log(Event.playbackPaused)
     }
 
     func finish() {
         player?.stop()
         player = nil
         delegate = nil
+        Diagnostics.log(Event.playbackFinished)
     }
 
     func seek(to time: TimeInterval) {
         guard let player else {
+            Diagnostics.log(Event.seekIgnored)
             return
         }
         player.currentTime = min(
             max(time, .zero),
             player.duration
         )
+        Diagnostics.log(Event.seekCompleted)
     }
 
     func changeRate(to value: Float) {
-        player?.rate = min(
+        guard let player else {
+            Diagnostics.log(Event.rateChangeIgnored)
+            return
+        }
+        player.rate = min(
             max(value, 0.5),
             2
         )
+        Diagnostics.log(Event.rateChanged)
     }
 
 }
@@ -95,6 +138,7 @@ private extension PlayerServiceConcrete {
             return
         }
         player?.currentTime = .zero
+        Diagnostics.log(Event.playbackCompleted)
     }
 
     func didFail(id: UUID) {
@@ -104,6 +148,7 @@ private extension PlayerServiceConcrete {
         player?.stop()
         player = nil
         delegate = nil
+        Diagnostics.log(Event.playbackFailed)
     }
 
 }

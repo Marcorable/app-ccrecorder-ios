@@ -60,7 +60,7 @@ extension PlayingRecordUsecaseTests {
         // given
         await recordFileRepository.setFileURL(.init(filePath: "/tmp/record.m4a"))
         await recordFileRepository.setFileExists(true)
-        playerService.error = .prepareFailed
+        playerService.error = .prepareToPlayFalse
 
         // when
         do {
