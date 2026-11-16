@@ -1,5 +1,5 @@
 {
-  "originHash" : "986ee388fbcdf9167ec11a26fe984fb44142eca427384f8f15554a0d59b9d8ff",
+  "originHash" : "0a995f6719091b86ea44966a98d266dcb923c50d6637a9526eaf83d8a0c2147d",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -116,6 +116,15 @@
       "state" : {
         "revision" : "3851d94a41890dea16dc3db34caf60e585cb4163",
         "version" : "2.30910.1"
+      }
+    },
+    {
+      "identity" : "necto",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/toss/necto.git",
+      "state" : {
+        "revision" : "a65c076f35357a593f725a0dae59766907a0a355",
+        "version" : "0.2.3"
       }
     },
     {

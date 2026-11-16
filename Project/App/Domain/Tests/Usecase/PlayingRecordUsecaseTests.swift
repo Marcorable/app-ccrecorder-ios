@@ -49,7 +49,10 @@ extension PlayingRecordUsecaseTests {
             Issue.record("fileNotFound 오류를 던져야 합니다.")
         } catch DomainError.playingRecordUsecase(let failure) {
             // then
-            #expect(failure == .fileNotFound)
+            guard case .fileNotFound = failure else {
+                Issue.record("fileNotFound 오류를 던져야 합니다.")
+                return
+            }
         } catch {
             Issue.record("예상하지 못한 오류입니다: \(error)")
         }
@@ -60,7 +63,7 @@ extension PlayingRecordUsecaseTests {
         // given
         await recordFileRepository.setFileURL(.init(filePath: "/tmp/record.m4a"))
         await recordFileRepository.setFileExists(true)
-        playerService.error = .prepareFailed
+        playerService.error = .prepareToPlayFalse
 
         // when
         do {
@@ -68,7 +71,10 @@ extension PlayingRecordUsecaseTests {
             Issue.record("prepareFailed 오류를 던져야 합니다.")
         } catch DomainError.playingRecordUsecase(let failure) {
             // then
-            #expect(failure == .prepareFailed)
+            guard case .prepareFailed = failure else {
+                Issue.record("prepareFailed 오류를 던져야 합니다.")
+                return
+            }
             #expect(playerService.finishCallCount == 1)
         } catch {
             Issue.record("예상하지 못한 오류입니다: \(error)")

@@ -2,10 +2,20 @@
 import UIKit
 import StoreKit
 
+import Common
 import Domain
 import FirebaseAnalytics
 
 actor AnalyticsServiceConcrete {}
+
+private extension AnalyticsServiceConcrete {
+
+    enum Event: String, Diagnostics.Event {
+        case configurationStarted = "configuration.started"
+        case configurationCompleted = "configuration.completed"
+    }
+
+}
 
 extension AnalyticsServiceConcrete: Service {
 
@@ -14,7 +24,9 @@ extension AnalyticsServiceConcrete: Service {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?
     ) -> Bool {
+        Diagnostics.log(Event.configurationStarted)
         configureFirebaseAnalytics()
+        Diagnostics.log(Event.configurationCompleted)
         return true
     }
 

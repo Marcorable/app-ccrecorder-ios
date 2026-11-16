@@ -97,9 +97,14 @@ extension PlayerServiceConcretePlaybackTests {
         try Data("not audio".utf8).write(to: corruptedURL)
         defer { try? FileManager.default.removeItem(at: corruptedURL) }
 
-        // when, then
-        await #expect(throws: DomainError.PlayerServiceFailure.prepareFailed) {
+        // when
+        do {
             try await service.prepare(with: corruptedURL)
+            Issue.record("system 오류를 던져야 합니다.")
+        } catch DomainError.PlayerServiceFailure.system(_) {
+            // then
+        } catch {
+            Issue.record("예상하지 못한 오류입니다: \(error)")
         }
     }
 

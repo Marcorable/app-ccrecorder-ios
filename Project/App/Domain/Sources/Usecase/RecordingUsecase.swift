@@ -13,10 +13,8 @@ public protocol RecordingUsecase: AnyObject, Sendable {
 
 extension DomainError {
 
-    public enum RecordingUsecaseFailure: Error, Equatable, Sendable {
-        case prepareFailed
-        case finishFailed
-        case saveFailed
+    public enum RecordingUsecaseFailure: Error, Sendable {
+        case system(Error)
     }
 
 }

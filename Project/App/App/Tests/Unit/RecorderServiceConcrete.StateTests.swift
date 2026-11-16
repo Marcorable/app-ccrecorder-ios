@@ -22,9 +22,14 @@ extension RecorderServiceConcreteStateTests {
 
     @Test("준비하지 않고 완료하면 notPrepared 오류를 던진다")
     func finishWithoutPreparationThrows() async {
-        // when, then
-        await #expect(throws: DomainError.RecorderServiceFailure.notPrepared) {
-            try await service.finish()
+        // when
+        do {
+            _ = try await service.finish()
+            Issue.record("notPrepared 오류를 던져야 합니다.")
+        } catch DomainError.RecorderServiceFailure.notPrepared {
+            // then
+        } catch {
+            Issue.record("예상하지 못한 오류입니다: \(error)")
         }
     }
 
@@ -39,8 +44,13 @@ extension RecorderServiceConcreteStateTests {
         // then
         #expect(await !service.isRecording)
         #expect(await service.currentTime == .zero)
-        await #expect(throws: DomainError.RecorderServiceFailure.notPrepared) {
-            try await service.finish()
+        do {
+            _ = try await service.finish()
+            Issue.record("notPrepared 오류를 던져야 합니다.")
+        } catch DomainError.RecorderServiceFailure.notPrepared {
+            // then
+        } catch {
+            Issue.record("예상하지 못한 오류입니다: \(error)")
         }
         await cleanUp()
     }

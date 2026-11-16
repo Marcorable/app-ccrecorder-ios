@@ -18,7 +18,8 @@ public protocol PlayingRecordUsecase: AnyObject, Sendable {
 
 extension DomainError {
 
-    public enum PlayingRecordUsecaseFailure: Error, Equatable, Sendable {
+    public enum PlayingRecordUsecaseFailure: Error, Sendable {
+        case system(Error)
         case fileNotFound
         case prepareFailed
     }

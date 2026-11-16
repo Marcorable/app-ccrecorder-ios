@@ -18,8 +18,9 @@ public protocol PlayerService: AnyObject, Sendable {
 
 extension DomainError {
 
-    public enum PlayerServiceFailure: Error, Equatable, Sendable {
-        case prepareFailed
+    public enum PlayerServiceFailure: Error, Sendable {
+        case system(Error)
+        case prepareToPlayFalse
     }
 
 }

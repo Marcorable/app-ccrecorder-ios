@@ -1,6 +1,8 @@
 
 import Foundation
 
+import Common
+
 final class ManagingConversationUsecaseConcrete: Sendable {
     private let dependency: Dependency
     private let mutationLock = ConversationMutationLock()
@@ -9,6 +11,35 @@ final class ManagingConversationUsecaseConcrete: Sendable {
         self.dependency = dependency
     }
 }
+
+private extension ManagingConversationUsecaseConcrete {
+
+    enum Event: String, Diagnostics.Event {
+        case conversationsStarted = "conversations.started"
+        case conversationsCompleted = "conversations.completed"
+        case conversationsFailed = "conversations.failed"
+        case conversationStarted = "conversation.started"
+        case conversationCompleted = "conversation.completed"
+        case conversationFailed = "conversation.failed"
+        case conversationDeleteStarted = "conversation-delete.started"
+        case conversationDeleteCompleted = "conversation-delete.completed"
+        case conversationDeleteFailed = "conversation-delete.failed"
+        case notesStarted = "notes.started"
+        case notesCompleted = "notes.completed"
+        case notesFailed = "notes.failed"
+        case conversationUpdateStarted = "conversation-update.started"
+        case conversationUpdateCompleted = "conversation-update.completed"
+        case conversationUpdateFailed = "conversation-update.failed"
+        case noteAddStarted = "note-add.started"
+        case noteAddCompleted = "note-add.completed"
+        case noteAddFailed = "note-add.failed"
+        case noteDeleteStarted = "note-delete.started"
+        case noteDeleteCompleted = "note-delete.completed"
+        case noteDeleteFailed = "note-delete.failed"
+    }
+
+}
+
 extension ManagingConversationUsecaseConcrete {
 
     struct Dependency: Sendable {
@@ -23,24 +54,33 @@ extension ManagingConversationUsecaseConcrete {
 extension ManagingConversationUsecaseConcrete: ManagingConversationUsecase {
 
     func conversations() async -> Result<[Conversation], DomainError> {
+        Diagnostics.log(Event.conversationsStarted)
         do {
-            return .success(try await dependency.conversationRepository.read())
+            let conversations = try await dependency.conversationRepository.read()
+            Diagnostics.log(Event.conversationsCompleted)
+            return .success(conversations)
         } catch {
-            return .failure(.data(error))
+            Diagnostics.log(Event.conversationsFailed)
+            return .failure(.managingConversationUsecase(.system(error)))
         }
     }
 
     func conversation(id: Conversation.ID) async -> Result<Conversation?, DomainError> {
+        Diagnostics.log(Event.conversationStarted)
         do {
-            return .success(try await dependency.conversationRepository.read(id: id))
+            let conversation = try await dependency.conversationRepository.read(id: id)
+            Diagnostics.log(Event.conversationCompleted)
+            return .success(conversation)
         } catch {
-            return .failure(.data(error))
+            Diagnostics.log(Event.conversationFailed)
+            return .failure(.managingConversationUsecase(.system(error)))
         }
     }
 
     func deleteConversations(
         _ conversations: [Conversation]
     ) async -> Result<Void, DomainError> {
+        Diagnostics.log(Event.conversationDeleteStarted)
         do {
             for conversation in conversations {
                 if let fileURL = await dependency.recordFileRepository.fileURL(
@@ -52,34 +92,42 @@ extension ManagingConversationUsecaseConcrete: ManagingConversationUsecase {
             try await dependency.conversationRepository.delete(
                 ids: conversations.map(\.id)
             )
+            Diagnostics.log(Event.conversationDeleteCompleted)
             return .success(())
         } catch {
-            return .failure(.data(error))
+            Diagnostics.log(Event.conversationDeleteFailed)
+            return .failure(.managingConversationUsecase(.system(error)))
         }
     }
 
     func notes(
         conversationID: Conversation.ID
     ) async -> Result<[Note], DomainError> {
+        Diagnostics.log(Event.notesStarted)
         do {
             guard let conversation = try await dependency.conversationRepository.read(
                 id: conversationID
             ) else {
+                Diagnostics.log(Event.notesFailed)
                 return .failure(.managingConversationUsecase(.conversationNotFound))
             }
             let notes = try await dependency.noteRepository.read()
             let notesByID = Dictionary(
                 uniqueKeysWithValues: notes.map { ($0.id, $0) }
             )
+            let notesForConversation = conversation.noteIds.compactMap({ notesByID[$0] })
+            Diagnostics.log(Event.notesCompleted)
             return .success(
-                conversation.noteIds.compactMap { notesByID[$0] }
+                notesForConversation
             )
         } catch {
-            return .failure(.data(error))
+            Diagnostics.log(Event.notesFailed)
+            return .failure(.managingConversationUsecase(.system(error)))
         }
     }
 
     func update(_ conversation: Conversation) async throws {
+        Diagnostics.log(Event.conversationUpdateStarted)
         try await mutationLock.withLock(for: conversation.id) {
             do {
                 guard var updatingItem = try await dependency.conversationRepository.read(
@@ -91,12 +139,16 @@ extension ManagingConversationUsecaseConcrete: ManagingConversationUsecase {
                 updatingItem.topic = conversation.topic
                 updatingItem.parties = conversation.parties
                 try await dependency.conversationRepository.update(updatingItem)
+                Diagnostics.log(Event.conversationUpdateCompleted)
             } catch is CancellationError {
+                Diagnostics.log(Event.conversationUpdateFailed)
                 throw CancellationError()
             } catch let error as DomainError {
+                Diagnostics.log(Event.conversationUpdateFailed)
                 throw error
             } catch {
-                throw DomainError.data(error)
+                Diagnostics.log(Event.conversationUpdateFailed)
+                throw DomainError.managingConversationUsecase(.system(error))
             }
         }
     }
@@ -105,30 +157,41 @@ extension ManagingConversationUsecaseConcrete: ManagingConversationUsecase {
         content: String,
         to conversationID: Conversation.ID
     ) async throws -> Conversation {
-        try await mutationLock.withLock(for: conversationID) {
-            guard var updatingItem = try await dependency.conversationRepository.read(
-                id: conversationID
-            ) else {
-                throw DomainError.managingConversationUsecase(.conversationNotFound)
-            }
-            guard !content.isEmpty else {
-                return updatingItem
-            }
-
-            let note = note(content: content)
-            updatingItem.noteIds.append(note.id)
+        Diagnostics.log(Event.noteAddStarted)
+        return try await mutationLock.withLock(for: conversationID) {
             do {
+                guard var updatingItem = try await dependency.conversationRepository.read(
+                    id: conversationID
+                ) else {
+                    throw DomainError.managingConversationUsecase(.conversationNotFound)
+                }
+                guard !content.isEmpty else {
+                    Diagnostics.log(Event.noteAddCompleted)
+                    return updatingItem
+                }
+
+                let note = note(content: content)
+                updatingItem.noteIds.append(note.id)
                 try Task.checkCancellation()
                 try await dependency.noteRepository.create(note)
-                try Task.checkCancellation()
-                try await dependency.conversationRepository.update(updatingItem)
-                return updatingItem
-            } catch {
-                try? await dependency.noteRepository.delete(ids: [note.id])
-                if error is CancellationError {
-                    throw CancellationError()
+                do {
+                    try Task.checkCancellation()
+                    try await dependency.conversationRepository.update(updatingItem)
+                    Diagnostics.log(Event.noteAddCompleted)
+                    return updatingItem
+                } catch {
+                    try? await dependency.noteRepository.delete(ids: [note.id])
+                    throw error
                 }
-                throw DomainError.data(error)
+            } catch is CancellationError {
+                Diagnostics.log(Event.noteAddFailed)
+                throw CancellationError()
+            } catch let error as DomainError {
+                Diagnostics.log(Event.noteAddFailed)
+                throw error
+            } catch {
+                Diagnostics.log(Event.noteAddFailed)
+                throw DomainError.managingConversationUsecase(.system(error))
             }
         }
     }
@@ -137,31 +200,42 @@ extension ManagingConversationUsecaseConcrete: ManagingConversationUsecase {
         ids: [Note.ID],
         from conversationID: Conversation.ID
     ) async throws -> Conversation {
-        try await mutationLock.withLock(for: conversationID) {
-            guard let conversation = try await dependency.conversationRepository.read(
-                id: conversationID
-            ) else {
-                throw DomainError.managingConversationUsecase(.conversationNotFound)
-            }
-            guard !ids.isEmpty else {
-                return conversation
-            }
-
-            let idSet = Set(ids)
-            var updatingItem = conversation
-            updatingItem.noteIds.removeAll(where: { idSet.contains($0) })
+        Diagnostics.log(Event.noteDeleteStarted)
+        return try await mutationLock.withLock(for: conversationID) {
             do {
+                guard let conversation = try await dependency.conversationRepository.read(
+                    id: conversationID
+                ) else {
+                    throw DomainError.managingConversationUsecase(.conversationNotFound)
+                }
+                guard !ids.isEmpty else {
+                    Diagnostics.log(Event.noteDeleteCompleted)
+                    return conversation
+                }
+
+                let idSet = Set(ids)
+                var updatingItem = conversation
+                updatingItem.noteIds.removeAll(where: { idSet.contains($0) })
                 try Task.checkCancellation()
                 try await dependency.conversationRepository.update(updatingItem)
-                try Task.checkCancellation()
-                try await dependency.noteRepository.delete(ids: ids)
-                return updatingItem
-            } catch {
-                try? await dependency.conversationRepository.update(conversation)
-                if error is CancellationError {
-                    throw CancellationError()
+                do {
+                    try Task.checkCancellation()
+                    try await dependency.noteRepository.delete(ids: ids)
+                    Diagnostics.log(Event.noteDeleteCompleted)
+                    return updatingItem
+                } catch {
+                    try? await dependency.conversationRepository.update(conversation)
+                    throw error
                 }
-                throw DomainError.data(error)
+            } catch is CancellationError {
+                Diagnostics.log(Event.noteDeleteFailed)
+                throw CancellationError()
+            } catch let error as DomainError {
+                Diagnostics.log(Event.noteDeleteFailed)
+                throw error
+            } catch {
+                Diagnostics.log(Event.noteDeleteFailed)
+                throw DomainError.managingConversationUsecase(.system(error))
             }
         }
     }

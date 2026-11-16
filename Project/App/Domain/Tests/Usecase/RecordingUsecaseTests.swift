@@ -43,7 +43,7 @@ extension RecordingUsecaseTests {
     @Test("Recorder 준비에 실패하면 생성한 파일을 정리한다")
     func prepareFailureCleansUpFile() async {
         // given
-        recorderService.prepareError = .prepareFailed
+        recorderService.prepareError = .prepareToRecordFalse
 
         // when
         do {
@@ -51,7 +51,10 @@ extension RecordingUsecaseTests {
             Issue.record("prepareFailed 오류를 던져야 합니다.")
         } catch DomainError.recordingUsecase(let failure) {
             // then
-            #expect(failure == .prepareFailed)
+            guard case .system = failure else {
+                Issue.record("system 오류를 던져야 합니다.")
+                return
+            }
             #expect(recorderService.cancelCallCount == 1)
             #expect(await fileRepository.removedURLs == [fileRepository.recordingURL])
         } catch {
@@ -85,7 +88,10 @@ extension RecordingUsecaseTests {
             Issue.record("saveFailed 오류를 던져야 합니다.")
         } catch DomainError.recordingUsecase(let failure) {
             // then
-            #expect(failure == .saveFailed)
+            guard case .system = failure else {
+                Issue.record("system 오류를 던져야 합니다.")
+                return
+            }
             #expect(await fileRepository.removedURLs == [fileRepository.recordingURL])
         } catch {
             Issue.record("예상하지 못한 오류입니다: \(error)")

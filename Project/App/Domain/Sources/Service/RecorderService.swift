@@ -14,8 +14,9 @@ public protocol RecorderService: AnyObject, Sendable {
 
 extension DomainError {
 
-    public enum RecorderServiceFailure: Error, Equatable, Sendable {
-        case prepareFailed
+    public enum RecorderServiceFailure: Error, Sendable {
+        case system(Error)
+        case prepareToRecordFalse
         case notPrepared
     }
 
