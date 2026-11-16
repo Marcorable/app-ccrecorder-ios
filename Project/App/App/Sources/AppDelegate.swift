@@ -15,6 +15,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             for serviceType in [
                 AppCheckService.self,
                 FirebaseService.self,
+                DiagnosticsService.self,
                 AnalyticsServiceConcrete.self,
                 CrashReportingServiceConcrete.self,
                 PlayerServiceConcrete.self,

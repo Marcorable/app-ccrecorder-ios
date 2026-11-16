@@ -4,6 +4,10 @@ import ProjectDescriptionHelpers
 
 let packages: [Package] = [
     .remote(
+        url: "https://github.com/toss/necto.git",
+        requirement: .exact("0.2.3")
+    ),
+    .remote(
         url: "https://github.com/firebase/firebase-ios-sdk",
         requirement: .exact("13.1.1")
     ),
@@ -33,9 +37,17 @@ let userDefaultsPrivacyManifest: PrivacyManifest = .privacyManifest(
     ]
 )
 
+let common = Target.module(
+    name: "Common",
+    buildableFolders: ["Common/Sources"]
+)
+
 let domain = Target.module(
     name: "Domain",
-    buildableFolders: ["Domain/Sources"]
+    buildableFolders: ["Domain/Sources"],
+    dependencies: [
+        .target(name: "Common"),
+    ]
 )
 
 let domainTests = Target.tests(
@@ -51,6 +63,7 @@ let data = Target.module(
     buildableFolders: ["Data/Sources"],
     resources: ["Data/Resources/**"],
     dependencies: [
+        .target(name: "Common"),
         .target(name: "Domain"),
     ]
 )
@@ -76,6 +89,7 @@ let presentation = Target.module(
         privacyManifest: userDefaultsPrivacyManifest
     ),
     dependencies: [
+        .target(name: "Common"),
         .target(name: "Domain"),
         .package(product: "ComposableArchitecture"),
         .package(product: "Dependencies"),
@@ -95,6 +109,7 @@ let presentationTests = Target.tests(
         ),
     ],
     dependencies: [
+        .target(name: "Common"),
         .target(name: "Presentation"),
         .target(name: "Domain"),
     ]
@@ -160,10 +175,13 @@ let app = Target.target(
         ),
     ],
     dependencies: [
+        .target(name: "Common"),
         .target(name: "Presentation"),
         .target(name: "Domain"),
         .target(name: "Data"),
         .package(product: "FirebaseAppCheck"),
+        .package(product: "NectoSDK"),
+        .package(product: "NectoEventsPlugin"),
         .package(product: "FirebaseAnalyticsCore"),
         .package(product: "FirebaseCrashlytics"),
     ],
@@ -220,6 +238,7 @@ let project = Project(
     packages: packages,
     settings: .ccRecorder,
     targets: [
+        common,
         domain,
         domainTests,
         data,
