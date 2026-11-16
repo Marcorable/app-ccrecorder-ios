@@ -125,7 +125,7 @@ extension RecordScreen.RecordingPanel.Feature {
             case recordingDiscarding
             case recordingSaving(Conversation)
             case recordingSaved
-            case recordingFailed(DomainError.RecordingUsecaseFailure)
+            case recordingFailed(Failure)
         }
 
         @CasePathable
@@ -134,7 +134,13 @@ extension RecordScreen.RecordingPanel.Feature {
             case saveRequested
             case recordingDiscarded
             case recordingSaved
-            case recordingFailed(DomainError.RecordingUsecaseFailure)
+            case recordingFailed(Failure)
+        }
+
+        enum Failure: Equatable {
+            case prepareFailed
+            case finishFailed
+            case saveFailed
         }
     }
 
@@ -234,8 +240,6 @@ extension RecordScreen.RecordingPanel.Feature {
                                 )))
                             } catch is CancellationError {
                                 return
-                            } catch let DomainError.recordingUsecase(error) {
-                                await send(.response(.recordingFailed(error)))
                             } catch {
                                 await send(.response(.recordingFailed(.prepareFailed)))
                             }
@@ -326,8 +330,6 @@ extension RecordScreen.RecordingPanel.Feature {
                             await send(.response(.recordingSaved))
                         } catch is CancellationError {
                             return
-                        } catch let DomainError.recordingUsecase(error) {
-                            await send(.response(.recordingFailed(error)))
                         } catch {
                             await send(.response(.recordingFailed(.saveFailed)))
                         }

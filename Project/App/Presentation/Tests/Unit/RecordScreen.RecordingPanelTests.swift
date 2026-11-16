@@ -9,7 +9,11 @@ import ComposableArchitecture
 
 @Suite("녹음 화면 RecordingPanel Feature")
 @MainActor
-struct RecordScreenRecordingPanelTests {}
+struct RecordScreenRecordingPanelTests {
+    enum TestFailure: Error {
+        case failed
+    }
+}
 
 extension RecordScreenRecordingPanelTests {
 
@@ -160,7 +164,7 @@ extension RecordScreenRecordingPanelTests {
                 $0.audioSession.authorizationStatus = { .authorized }
                 $0.audioSession.activate = {}
                 $0.recordingUsecase.prepare = {
-                    throw DomainError.recordingUsecase(.prepareFailed)
+                    throw DomainError.recordingUsecase(.system(TestFailure.failed))
                 }
             }
         )
