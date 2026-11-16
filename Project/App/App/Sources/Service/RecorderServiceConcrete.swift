@@ -28,7 +28,6 @@ private extension RecorderServiceConcrete {
         case recordingStarted = "recording.started"
         case pauseIgnored = "pause.ignored"
         case recordingPaused = "recording.paused"
-        case finishFailedNotPrepared = "finish.failed.not-prepared"
         case recordingFinished = "recording.finished"
         case recordingCancelled = "recording.cancelled"
     }
@@ -55,18 +54,18 @@ extension RecorderServiceConcrete: RecorderService {
             )
 
             guard recorder.prepareToRecord() else {
-                throw DomainError.RecorderServiceFailure.prepareFailed
+                throw DomainError.RecorderServiceFailure.prepareToRecordFalse
             }
 
             self.recorder?.stop()
             self.recorder = recorder
             Diagnostics.log(Event.prepareCompleted)
-        } catch let error as DomainError.RecorderServiceFailure {
-            Diagnostics.log(of: .error, Event.prepareFailed)
-            throw error
         } catch {
-            Diagnostics.log(of: .error, Event.prepareFailed)
-            throw DomainError.RecorderServiceFailure.prepareFailed
+            Diagnostics.log(Event.prepareFailed)
+            if let failure = error as? DomainError.RecorderServiceFailure {
+                throw failure
+            }
+            throw .system(error)
         }
     }
 
@@ -93,7 +92,6 @@ extension RecorderServiceConcrete: RecorderService {
 
     func finish() async throws(DomainError.RecorderServiceFailure) -> URL {
         guard let recorder else {
-            Diagnostics.log(of: .error, Event.finishFailedNotPrepared)
             throw DomainError.RecorderServiceFailure.notPrepared
         }
 

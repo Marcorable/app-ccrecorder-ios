@@ -43,7 +43,7 @@ extension RecordingUsecaseTests {
     @Test("Recorder 준비에 실패하면 생성한 파일을 정리한다")
     func prepareFailureCleansUpFile() async {
         // given
-        recorderService.prepareError = .prepareFailed
+        recorderService.prepareError = .prepareToRecordFalse
 
         // when
         do {
