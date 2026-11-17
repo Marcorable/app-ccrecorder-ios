@@ -62,7 +62,7 @@
         "ko":  {
           "stringUnit":  {
             "state":  "translated",
-            "value":  "InputParties"
+            "value":  "참여자"
           }
         }
       }
@@ -73,7 +73,7 @@
         "ko":  {
           "stringUnit":  {
             "state":  "translated",
-            "value":  "InputTitle"
+            "value":  "제목"
           }
         }
       }

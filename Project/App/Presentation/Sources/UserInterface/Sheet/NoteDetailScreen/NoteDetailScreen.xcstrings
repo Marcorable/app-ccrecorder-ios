@@ -78,6 +78,17 @@
         }
       }
     },
+    "vocabularyContent.prompt.original":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "단어"
+          }
+        }
+      }
+    },
     "vocabularyContent.prompt.translation":  {
       "extractionState":  "manual",
       "localizations":  {

@@ -10,7 +10,7 @@ extension NoteDetailScreen {
             VStack(alignment: .leading) {
                 InputField(
                     title: String(localized: .NoteDetailScreen.vocabularyContentLabelOriginal),
-                    prompt: String(localized: .NoteDetailScreen.labelVocabulary),
+                    prompt: String(localized: .NoteDetailScreen.vocabularyContentPromptOriginal),
                     iconName: "e.circle.fill",
                     text: $original
                 )
