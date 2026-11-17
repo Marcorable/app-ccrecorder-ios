@@ -1,0 +1,204 @@
+{
+  "sourceLanguage":  "ko",
+  "strings":  {
+    "alert.playback_interrupted":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "다른 오디오 사용으로 재생이 중단되었습니다"
+          }
+        }
+      }
+    },
+    "alert.playback_paused":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "재생이 일시 정지되었습니다"
+          }
+        }
+      }
+    },
+    "editor.label.title_input":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Title"
+          }
+        }
+      }
+    },
+    "error.load_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "대화를 불러올 수 없습니다"
+          }
+        }
+      }
+    },
+    "error.record_file_not_found":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음 파일을 찾을 수 없습니다"
+          }
+        }
+      }
+    },
+    "error.record_file_prepare_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음 파일을 준비하지 못했습니다"
+          }
+        }
+      }
+    },
+    "error.record_file_system_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음 파일을 준비하지 못했습니다"
+          }
+        }
+      }
+    },
+    "informationBox.button.done":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "완료"
+          }
+        }
+      }
+    },
+    "informationBox.label.participant":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "참여"
+          }
+        }
+      }
+    },
+    "informationBox.label.participant_count":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld명"
+          }
+        }
+      }
+    },
+    "informationBox.label.participant_input":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Party"
+          }
+        }
+      }
+    },
+    "informationBox.label.topic":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "주제"
+          }
+        }
+      }
+    },
+    "informationBox.prompt.participant_space_separated":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "참여인원을 추가하세요 (공백 분리)"
+          }
+        }
+      }
+    },
+    "informationBox.prompt.topic_edit":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "주제를 입력하세요"
+          }
+        }
+      }
+    },
+    "inputBox.button.add":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "추가"
+          }
+        }
+      }
+    },
+    "inputBox.label.note_input":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Input Text"
+          }
+        }
+      }
+    },
+    "inputBox.prompt.note_input":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "영어 또는 한글 메모를 작성하세요"
+          }
+        }
+      }
+    },
+    "playbackPanel.label.unavailable":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "재생할 수 없음"
+          }
+        }
+      }
+    }
+  },
+  "version":  "1.0"
+}

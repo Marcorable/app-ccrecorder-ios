@@ -14,7 +14,7 @@ enum SettingScreen {
                 InformationSection(appVersion: store.appVersion)
                 TeamSection()
             }
-            .navigationTitle("설정")
+            .navigationTitle(String(localized: .SettingScreen.titleNavigation))
             .navigationBarTitleDisplayMode(.inline)
             .fullScreenCover(
                 item: $store.scope(

@@ -12,15 +12,15 @@ extension RecordScreen {
             GroupBox {
                 if store.isEditing {
                     TextField(
-                        "InputTitle",
+                        String(localized: .RecordScreen.conversationInfoBoxLabelTitleInput),
                         text: $store.title,
-                        prompt: Text("녹음 제목을 입력하세요")
+                        prompt: Text(.RecordScreen.conversationInfoBoxPromptTitle)
                     )
                     .trailingAction(
                         of: !store.title.isEmpty,
                         label: {
                             Image(systemName: "multiply.circle.fill")
-                                .accessibilityLabel("입력 내용 지우기")
+                                .accessibilityLabel(String(localized: .accessibilityClearInput))
                         },
                         action: {
                             store.send(.view(.clearTitleButtonTapped))
@@ -29,15 +29,15 @@ extension RecordScreen {
                     .multilineTextAlignment(.center)
                     .cornerRadius(10)
                     TextField(
-                        "InputTopic",
+                        String(localized: .labelTopicInput),
                         text: $store.topic,
-                        prompt: Text("대화 주제를 입력하세요")
+                        prompt: Text(.RecordScreen.conversationInfoBoxPromptTopic)
                     )
                     .trailingAction(
                         of: !store.topic.isEmpty,
                         label: {
                             Image(systemName: "multiply.circle.fill")
-                                .accessibilityLabel("입력 내용 지우기")
+                                .accessibilityLabel(String(localized: .accessibilityClearInput))
                         },
                         action: {
                             store.send(.view(.clearTopicButtonTapped))
@@ -46,15 +46,15 @@ extension RecordScreen {
                     .multilineTextAlignment(.center)
                     .cornerRadius(10)
                     TextField(
-                        "InputParties",
+                        String(localized: .RecordScreen.conversationInfoBoxLabelParticipantsInput),
                         text: $store.partyName,
-                        prompt: Text("참여자를 추가하세요")
+                        prompt: Text(.RecordScreen.conversationInfoBoxPromptParticipantAdd)
                     )
                     .trailingAction(
                         of: !store.partyName.isEmpty,
                         label: {
                             Image(systemName: "multiply.circle.fill")
-                                .accessibilityLabel("입력 내용 지우기")
+                                .accessibilityLabel(String(localized: .accessibilityClearInput))
                         },
                         action: {
                             store.send(.view(.clearPartyNameButtonTapped))
@@ -106,7 +106,7 @@ extension RecordScreen {
                     },
                     label: {
                         HStack {
-                            Text("Conversation Information")
+                            Text(.labelConversationInformation)
                                 .font(.headline)
                                 .foregroundStyle(
                                     Color(asset: Asset.Icon.accent)

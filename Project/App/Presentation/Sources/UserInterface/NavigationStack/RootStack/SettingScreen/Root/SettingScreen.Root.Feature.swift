@@ -39,7 +39,7 @@ extension SettingScreen.Root.Feature {
         init(bundle: Bundle = .main) {
             self.appVersion = bundle.object(
                 forInfoDictionaryKey: "CFBundleShortVersionString"
-            ) as? String ?? "알 수 없음"
+            ) as? String ?? String(localized: .SettingScreen.labelUnknown)
         }
     }
 

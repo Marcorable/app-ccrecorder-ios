@@ -5,7 +5,7 @@ extension SettingScreen {
 
     struct TeamSection: View {
         var body: some View {
-            Section("Team Marcoda") {
+            Section(String(localized: .SettingScreen.teamSectionTitleSection)) {
                 ForEach(Row.Content.all, id: \.self) {
                     Row(content: $0)
                 }
@@ -58,20 +58,20 @@ extension SettingScreen.TeamSection.Row {
         static let all: [Self] = [
             .init(
                 name: "Marco",
-                role: "Team Leader · iOS Development",
+                role: String(localized: .SettingScreen.teamSectionLabelIosRole),
                 links: [
                     .init(
-                        title: "GitHub",
+                        title: String(localized: .SettingScreen.teamSectionButtonGithub),
                         url: URL(string: "https://github.com/Marcorable")!
                     ),
                 ]
             ),
             .init(
                 name: "Coda",
-                role: "Project Management",
+                role: String(localized: .SettingScreen.teamSectionLabelProjectRole),
                 links: [
                     .init(
-                        title: "GitHub",
+                        title: String(localized: .SettingScreen.teamSectionButtonGithub),
                         url: URL(string: "https://github.com/dacodaco")!
                     ),
                 ]

@@ -1,0 +1,226 @@
+{
+  "sourceLanguage":  "ko",
+  "strings":  {
+    "generalSection.button.replay_tutorial":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "앱 사용방법 다시보기"
+          }
+        }
+      }
+    },
+    "generalSection.label.auto_lock_disabled":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "화면 자동 잠금 끄기"
+          }
+        }
+      }
+    },
+    "generalSection.label.display_mode":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "화면 모드"
+          }
+        }
+      }
+    },
+    "generalSection.label.display_mode_dark":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "다크 모드"
+          }
+        }
+      }
+    },
+    "generalSection.label.display_mode_light":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "라이트 모드"
+          }
+        }
+      }
+    },
+    "generalSection.label.display_mode_system":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "기기 설정에 따름"
+          }
+        }
+      }
+    },
+    "generalSection.label.skip_interval":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "건너뛰기 시간"
+          }
+        }
+      }
+    },
+    "generalSection.label.skip_seconds":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "%lld초"
+          }
+        }
+      }
+    },
+    "generalSection.title.section":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "일반"
+          }
+        }
+      }
+    },
+    "informationSection.button.contact":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "문의하기"
+          }
+        }
+      }
+    },
+    "informationSection.button.instagram":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "인스타그램 소통하기"
+          }
+        }
+      }
+    },
+    "informationSection.button.open_source_licenses":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "오픈소스 라이선스"
+          }
+        }
+      }
+    },
+    "informationSection.label.version":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "버전"
+          }
+        }
+      }
+    },
+    "informationSection.title.app_info":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "앱 정보"
+          }
+        }
+      }
+    },
+    "label.unknown":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "알 수 없음"
+          }
+        }
+      }
+    },
+    "teamSection.button.github":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "GitHub"
+          }
+        }
+      }
+    },
+    "teamSection.label.ios_role":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Team Leader · iOS Development"
+          }
+        }
+      }
+    },
+    "teamSection.label.project_role":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Project Management"
+          }
+        }
+      }
+    },
+    "teamSection.title.section":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Team Marcoda"
+          }
+        }
+      }
+    },
+    "title.navigation":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "설정"
+          }
+        }
+      }
+    }
+  },
+  "version":  "1.0"
+}

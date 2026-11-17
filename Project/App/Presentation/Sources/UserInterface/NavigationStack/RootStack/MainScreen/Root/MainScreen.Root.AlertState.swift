@@ -6,47 +6,47 @@ extension AlertState where Action == MainScreen.Root.Feature.Action.Alert {
     static var permissionDenied: Self {
         .init(
             title: {
-                TextState("마이크 권한 필요")
+                TextState(String(localized: .MainScreen.alertMicrophonePermissionRequired))
             },
             actions: {
                 ButtonState(action: .openSettingsTapped) {
-                    TextState("설정으로 이동")
+                    TextState(String(localized: .MainScreen.buttonOpenSettings))
                 }
                 ButtonState(role: .cancel) {
-                    TextState("닫기")
+                    TextState(String(localized: .buttonClose))
                 }
             },
             message: {
-                TextState("설정 > Casual Conversation > 마이크를 허용해 주세요")
+                TextState(String(localized: .MainScreen.alertMicrophonePermissionMessage))
             }
         )
     }
 
     static var conversationLoadFailed: Self {
         retryAlert(
-            title: "대화 목록 불러오기 실패",
+            title: String(localized: .MainScreen.errorConversationListLoadFailed),
             retryAction: .retryConversationLoad
         )
     }
 
     static var conversationDeleteFailed: Self {
         failureAlert(
-            title: "대화 삭제 실패",
-            message: "대화 또는 녹음 파일을 삭제하지 못했습니다"
+            title: String(localized: .MainScreen.errorConversationDeleteFailed),
+            message: String(localized: .MainScreen.errorConversationDeleteFailedMessage)
         )
     }
 
     static var noteLoadFailed: Self {
         retryAlert(
-            title: "노트 불러오기 실패",
+            title: String(localized: .MainScreen.errorNoteListLoadFailed),
             retryAction: .retryNoteLoad
         )
     }
 
     static var noteDeleteFailed: Self {
         failureAlert(
-            title: "노트 삭제 실패",
-            message: "잠시 후 다시 시도해 주세요"
+            title: String(localized: .MainScreen.errorNoteDeleteFailed),
+            message: String(localized: .errorTryAgainLater)
         )
     }
 
@@ -60,14 +60,14 @@ extension AlertState where Action == MainScreen.Root.Feature.Action.Alert {
             },
             actions: {
                 ButtonState(action: retryAction) {
-                    TextState("다시 시도")
+                    TextState(String(localized: .MainScreen.buttonRetry))
                 }
                 ButtonState(role: .cancel) {
-                    TextState("취소")
+                    TextState(String(localized: .buttonCancel))
                 }
             },
             message: {
-                TextState("잠시 후 다시 시도해 주세요")
+                TextState(String(localized: .errorTryAgainLater))
             }
         )
     }
@@ -82,7 +82,7 @@ extension AlertState where Action == MainScreen.Root.Feature.Action.Alert {
             },
             actions: {
                 ButtonState(role: .cancel) {
-                    TextState("확인")
+                    TextState(String(localized: .buttonConfirm))
                 }
             },
             message: {

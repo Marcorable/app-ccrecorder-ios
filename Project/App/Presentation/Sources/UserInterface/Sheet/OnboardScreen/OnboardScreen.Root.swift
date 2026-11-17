@@ -29,7 +29,7 @@ enum OnboardScreen {
                                         store.send(.view(.startButtonTapped))
                                     },
                                     label: {
-                                        Text("앱 시작하기")
+                                        Text(.OnboardScreen.buttonStart)
                                             .tint(.white)
                                             .font(.system(size: 16, weight: .bold, design: .rounded))
                                             .padding()

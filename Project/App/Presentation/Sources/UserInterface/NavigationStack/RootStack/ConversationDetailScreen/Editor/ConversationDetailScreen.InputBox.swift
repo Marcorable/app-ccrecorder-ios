@@ -14,18 +14,18 @@ extension ConversationDetailScreen.Editor {
             GroupBox {
                 HStack {
                     TextField(
-                        "Input Text",
+                        String(localized: .ConversationDetailScreen.inputBoxLabelNoteInput),
                         text: Binding(
                             get: { store.noteInput },
                             set: { store.send(.view(.noteInputChanged($0))) }
                         ),
-                        prompt: Text("영어 또는 한글 메모를 작성하세요")
+                        prompt: Text(.ConversationDetailScreen.inputBoxPromptNoteInput)
                     )
                     .trailingAction(
                         of: !store.noteInput.isEmpty,
                         label: {
                             Image(systemName: "multiply.circle.fill")
-                                .accessibilityLabel("입력 내용 지우기")
+                                .accessibilityLabel(String(localized: .accessibilityClearInput))
                         },
                         action: { store.send(.view(.noteInputChanged(""))) }
                     )
@@ -59,7 +59,7 @@ extension ConversationDetailScreen.Editor {
                         }
                     )
                     Spacer()
-                    Button("추가") {
+                    Button(String(localized: .ConversationDetailScreen.inputBoxButtonAdd)) {
                         store.send(.view(.noteAdded))
                     }
                 }

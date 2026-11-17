@@ -1,0 +1,160 @@
+{
+  "sourceLanguage":  "ko",
+  "strings":  {
+    "alert.cancel":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음 취소"
+          }
+        }
+      }
+    },
+    "alert.cancel_message":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음물은 저장되지 않습니다"
+          }
+        }
+      }
+    },
+    "alert.complete":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음 완료"
+          }
+        }
+      }
+    },
+    "alert.complete_message":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음을 중지하고 녹음물을 저장하시겠습니까?"
+          }
+        }
+      }
+    },
+    "button.delete":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "삭제"
+          }
+        }
+      }
+    },
+    "conversationInfoBox.label.participants_input":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "참여자"
+          }
+        }
+      }
+    },
+    "conversationInfoBox.label.title_input":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "제목"
+          }
+        }
+      }
+    },
+    "conversationInfoBox.prompt.participant_add":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "참여자를 추가하세요"
+          }
+        }
+      }
+    },
+    "conversationInfoBox.prompt.title":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음 제목을 입력하세요"
+          }
+        }
+      }
+    },
+    "conversationInfoBox.prompt.topic":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "대화 주제를 입력하세요"
+          }
+        }
+      }
+    },
+    "error.prepare_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음 준비 실패"
+          }
+        }
+      }
+    },
+    "error.save_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음 저장 실패"
+          }
+        }
+      }
+    },
+    "error.save_failed_message":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음물을 저장하지 못했습니다"
+          }
+        }
+      }
+    },
+    "title.navigation":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "녹음하기"
+          }
+        }
+      }
+    }
+  },
+  "version":  "1.0"
+}

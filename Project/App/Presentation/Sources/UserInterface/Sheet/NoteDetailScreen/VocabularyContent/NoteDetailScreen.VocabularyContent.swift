@@ -9,13 +9,15 @@ extension NoteDetailScreen {
         var body: some View {
             VStack(alignment: .leading) {
                 InputField(
-                    title: "단어 Original",
+                    title: String(localized: .NoteDetailScreen.vocabularyContentLabelOriginal),
+                    prompt: String(localized: .NoteDetailScreen.vocabularyContentPromptOriginal),
                     iconName: "e.circle.fill",
                     text: $original
                 )
                 Spacer()
                 InputField(
-                    title: "번역 Translation",
+                    title: String(localized: .NoteDetailScreen.contentLabelTranslation),
+                    prompt: String(localized: .NoteDetailScreen.vocabularyContentPromptTranslation),
                     iconName: "k.circle.fill",
                     text: $translation
                 )
@@ -30,6 +32,7 @@ private extension NoteDetailScreen.VocabularyContent {
 
     struct InputField: View {
         let title: String
+        let prompt: String
         let iconName: String
         @Binding var text: String
 
@@ -43,7 +46,7 @@ private extension NoteDetailScreen.VocabularyContent {
                     TextField(
                         title,
                         text: $text,
-                        prompt: Text(title.components(separatedBy: " ")[0])
+                        prompt: Text(prompt)
                     )
                     .textFieldStyle(.roundedBorder)
                 }

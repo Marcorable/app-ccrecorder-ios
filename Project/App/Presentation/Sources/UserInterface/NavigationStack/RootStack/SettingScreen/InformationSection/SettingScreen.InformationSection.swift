@@ -8,13 +8,13 @@ extension SettingScreen {
         let appVersion: String
 
         var body: some View {
-            Section("앱 정보") {
-                LabeledContent("버전", value: appVersion)
+            Section(String(localized: .SettingScreen.informationSectionTitleAppInfo)) {
+                LabeledContent(String(localized: .SettingScreen.informationSectionLabelVersion), value: appVersion)
                 Link(
                     destination: URL(string: UIApplication.openSettingsURLString)!,
                     label: {
                         Label(
-                            "오픈소스 라이선스",
+                            String(localized: .SettingScreen.informationSectionButtonOpenSourceLicenses),
                             systemImage: "arrow.up.forward"
                         )
                     }
@@ -23,7 +23,7 @@ extension SettingScreen {
                     destination: URL(string: "https://www.instagram.com/casualconversation_ccrecorder/")!,
                     label: {
                         Label(
-                            "인스타그램 소통하기",
+                            String(localized: .SettingScreen.informationSectionButtonInstagram),
                             systemImage: "hand.thumbsup"
                         )
                     }
@@ -32,7 +32,7 @@ extension SettingScreen {
                     destination: URL(string: "mailto:pse.applications@gmail.com")!,
                     label: {
                         Label(
-                            "문의하기",
+                            String(localized: .SettingScreen.informationSectionButtonContact),
                             systemImage: "envelope.open"
                         )
                     }

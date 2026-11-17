@@ -26,7 +26,7 @@ extension MainScreen.ConversationList {
                             .truncationMode(.tail)
                         Spacer()
                         VStack(alignment: .trailing) {
-                            Text("Attendees \(viewModel.attendeeCount)")
+                            Text(.MainScreen.conversationListRowLabelAttendeeCount(viewModel.attendeeCount))
                                 .font(.caption)
                                 .tint(Color(asset: Asset.Logo.Muted.green))
                             Text(

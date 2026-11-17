@@ -53,7 +53,7 @@ extension ConversationDetailScreen {
                 .font(.caption)
                 .overlay {
                     if store.isPlaybackDisabled {
-                        Text("재생할 수 없음")
+                        Text(.ConversationDetailScreen.playbackPanelLabelUnavailable)
                             .font(.headline)
                     }
                 }

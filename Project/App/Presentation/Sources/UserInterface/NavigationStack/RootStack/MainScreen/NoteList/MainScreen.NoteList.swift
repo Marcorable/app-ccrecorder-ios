@@ -15,7 +15,7 @@ extension MainScreen {
                 onDelete: { store.send(.view(.deleteRequested($0))) }
             )
             .accessibilityIdentifier("main.noteList")
-            .navigationTitle("Note")
+            .navigationTitle(String(localized: .MainScreen.noteListTitleNavigation))
             .task {
                 await store.send(.view(.task)).finish()
             }

@@ -27,7 +27,7 @@ enum ConversationDetailScreen {
                     }
                 } else if store.conversationLoadFailed {
                     ContentUnavailableView(
-                        "대화를 불러올 수 없습니다",
+                        String(localized: .ConversationDetailScreen.errorLoadFailed),
                         systemImage: "exclamationmark.triangle"
                     )
                 } else {

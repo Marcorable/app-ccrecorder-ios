@@ -43,7 +43,7 @@ extension ConversationDetailScreen {
                 ToolbarItem(placement: .topBarTrailing) {
                     if store.isEditing {
                         TextField(
-                            "Title",
+                            String(localized: .ConversationDetailScreen.editorLabelTitleInput),
                             text: Binding(
                                 get: { store.title },
                                 set: { store.send(.view(.titleChanged($0))) }

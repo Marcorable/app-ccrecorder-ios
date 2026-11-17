@@ -54,9 +54,17 @@ extension NoteBoard.Row {
                     translation
                 case false:
                     if isVocabulary {
-                        original.isEmpty ? "단어를 알맞게 번역해보세요!" : "단어의 뜻을 찾아보세요!"
+                        .init(
+                            localized: original.isEmpty
+                                ? .noteBoardPromptVocabularyTranslation
+                                : .noteBoardPromptVocabularyOriginal
+                        )
                     } else {
-                        original.isEmpty ? "문장을 번역해보세요!" : "문장을 해석해보세요!"
+                        .init(
+                            localized: original.isEmpty
+                                ? .noteBoardPromptSentenceTranslation
+                                : .noteBoardPromptSentenceOriginal
+                        )
                     }
             }
         }

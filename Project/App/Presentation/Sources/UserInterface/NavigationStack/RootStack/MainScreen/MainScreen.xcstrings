@@ -1,0 +1,160 @@
+{
+  "sourceLanguage":  "ko",
+  "strings":  {
+    "alert.microphone_permission_message":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "설정 > Casual Conversation > 마이크를 허용해 주세요"
+          }
+        }
+      }
+    },
+    "alert.microphone_permission_required":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "마이크 권한 필요"
+          }
+        }
+      }
+    },
+    "button.open_settings":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "설정으로 이동"
+          }
+        }
+      }
+    },
+    "button.retry":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "다시 시도"
+          }
+        }
+      }
+    },
+    "conversationList.label.empty_description":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Record a conversation to see it here."
+          }
+        }
+      }
+    },
+    "conversationList.label.empty_title":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "No Conversations"
+          }
+        }
+      }
+    },
+    "conversationList.title.navigation":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Conversation"
+          }
+        }
+      }
+    },
+    "conversationListRow.label.attendee_count":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Attendees %lld"
+          }
+        }
+      }
+    },
+    "error.conversation_delete_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "대화 삭제 실패"
+          }
+        }
+      }
+    },
+    "error.conversation_delete_failed_message":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "대화 또는 녹음 파일을 삭제하지 못했습니다"
+          }
+        }
+      }
+    },
+    "error.conversation_list_load_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "대화 목록 불러오기 실패"
+          }
+        }
+      }
+    },
+    "error.note_delete_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "노트 삭제 실패"
+          }
+        }
+      }
+    },
+    "error.note_list_load_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "노트 불러오기 실패"
+          }
+        }
+      }
+    },
+    "noteList.title.navigation":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Note"
+          }
+        }
+      }
+    }
+  },
+  "version":  "1.0"
+}

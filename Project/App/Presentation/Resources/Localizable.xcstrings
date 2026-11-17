@@ -1,0 +1,163 @@
+{
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "📌" : {
+
+    },
+    "accessibility.clear_input" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "입력 내용 지우기"
+          }
+        }
+      }
+    },
+    "button.cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        }
+      }
+    },
+    "button.close" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닫기"
+          }
+        }
+      }
+    },
+    "button.confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인"
+          }
+        }
+      }
+    },
+    "button.save" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장"
+          }
+        }
+      }
+    },
+    "error.try_again_later" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "잠시 후 다시 시도해 주세요"
+          }
+        }
+      }
+    },
+    "label.conversation_information" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conversation Information"
+          }
+        }
+      }
+    },
+    "label.topic_input" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Topic"
+          }
+        }
+      }
+    },
+    "noteBoard.label.empty_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes from your conversations will appear here."
+          }
+        }
+      }
+    },
+    "noteBoard.label.empty_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Notes"
+          }
+        }
+      }
+    },
+    "noteBoard.prompt.sentence_original" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문장을 해석해보세요!"
+          }
+        }
+      }
+    },
+    "noteBoard.prompt.sentence_translation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문장을 번역해보세요!"
+          }
+        }
+      }
+    },
+    "noteBoard.prompt.vocabulary_original" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단어의 뜻을 찾아보세요!"
+          }
+        }
+      }
+    },
+    "noteBoard.prompt.vocabulary_translation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단어를 알맞게 번역해보세요!"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

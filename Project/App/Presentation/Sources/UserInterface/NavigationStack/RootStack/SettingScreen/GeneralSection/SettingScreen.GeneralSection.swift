@@ -9,9 +9,9 @@ extension SettingScreen {
         let store: StoreOf<Root.Feature>
 
         var body: some View {
-            Section("일반") {
+            Section(String(localized: .SettingScreen.generalSectionTitleSection)) {
                 Picker(
-                    "화면 모드",
+                    String(localized: .SettingScreen.generalSectionLabelDisplayMode),
                     selection: Binding(
                         get: { store.displayMode },
                         set: { store.send(.view(.displayModeChanged($0))) }
@@ -23,19 +23,19 @@ extension SettingScreen {
                     }
                 }
                 Picker(
-                    "건너뛰기 시간",
+                    String(localized: .SettingScreen.generalSectionLabelSkipInterval),
                     selection: Binding(
                         get: { store.skipInterval },
                         set: { store.send(.view(.skipIntervalChanged($0))) }
                     )
                 ) {
                     ForEach(SkipInterval.allCases, id: \.self) {
-                        Text("\($0.rawValue)초")
+                        Text(.SettingScreen.generalSectionLabelSkipSeconds($0.rawValue))
                             .tag($0)
                     }
                 }
                 Toggle(
-                    "화면 자동 잠금 끄기",
+                    String(localized: .SettingScreen.generalSectionLabelAutoLockDisabled),
                     isOn: Binding(
                         get: { store.isIdleTimerDisabled },
                         set: { store.send(.view(.idleTimerDisabledChanged($0))) }
@@ -44,7 +44,7 @@ extension SettingScreen {
                 Button(
                     action: { store.send(.view(.tutorialButtonTapped)) },
                     label: {
-                        Text("앱 사용방법 다시보기")
+                        Text(.SettingScreen.generalSectionButtonReplayTutorial)
                     }
                 )
                 .tint(.primary)
@@ -59,13 +59,13 @@ fileprivate extension DisplayMode {
     var title: String {
         switch self {
             case .system:
-                "기기 설정에 따름"
+                .init(localized: .SettingScreen.generalSectionLabelDisplayModeSystem)
 
             case .light:
-                "라이트 모드"
+                .init(localized: .SettingScreen.generalSectionLabelDisplayModeLight)
 
             case .dark:
-                "다크 모드"
+                .init(localized: .SettingScreen.generalSectionLabelDisplayModeDark)
         }
     }
 

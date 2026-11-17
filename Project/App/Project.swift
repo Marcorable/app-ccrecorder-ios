@@ -95,7 +95,8 @@ let presentation = Target.module(
         .package(product: "Dependencies"),
         .package(product: "DependenciesMacros"),
         .package(product: "IssueReporting"),
-    ]
+    ],
+    settings: .ccRecorderPresentation
 )
 
 let presentationTests = Target.tests(
@@ -123,15 +124,15 @@ let app = Target.target(
     deploymentTargets: CCRecorderProject.deploymentTargets,
     infoPlist: .extendingDefault(
         with: [
-            "CFBundleDisplayName": "Casual Conversation",
-            "CFBundleShortVersionString": "1.2.1",
-            "CFBundleVersion": "1",
+            "CFBundleDisplayName": "$(INFOPLIST_KEY_CFBundleDisplayName)",
+            "CFBundleShortVersionString": "$(MARKETING_VERSION)",
+            "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
             "FIREBASE_ANALYTICS_COLLECTION_ENABLED": false,
             "FirebaseCrashlyticsCollectionEnabled": false,
             "GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS": false,
             "ITSAppUsesNonExemptEncryption": false,
             "LSApplicationCategoryType": "public.app-category.productivity",
-            "NSMicrophoneUsageDescription": "대화를 녹음하기 위해 마이크 접근 권한이 필요합니다.",
+            "NSMicrophoneUsageDescription": "NSMicrophoneUsageDescription",
             "UIApplicationSceneManifest": [
                 "UIApplicationSupportsMultipleScenes": false,
             ],
@@ -190,11 +191,15 @@ let app = Target.target(
             "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
             "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": "YES",
             "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "",
+            "CURRENT_PROJECT_VERSION": "1",
+            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "DEVELOPMENT_ASSET_PATHS": "\"App/Resources/Preview Content\"",
             "DEVELOPMENT_TEAM": "9486RJPBM5",
-            "DEBUG_INFORMATION_FORMAT": "dwarf-with-dsym",
             "ENABLE_PREVIEWS": "YES",
+            "INFOPLIST_KEY_CFBundleDisplayName": "CFBundleDisplayName",
+            "MARKETING_VERSION": "1.2.1",
             "OTHER_LDFLAGS": "$(inherited) -ObjC",
+            "PRODUCT_NAME": "CCRecorder",
             "SWIFT_EMIT_LOC_STRINGS": "YES",
             "SWIFT_VERSION": "5.0",
             "TARGETED_DEVICE_FAMILY": "1,2",
@@ -234,7 +239,11 @@ let uiTests = Target.target(
 let project = Project(
     name: "App",
     organizationName: CCRecorderProject.organizationName,
-    options: .options(automaticSchemesOptions: .disabled),
+    options: .options(
+        automaticSchemesOptions: .disabled,
+        defaultKnownRegions: ["ko"],
+        developmentRegion: "ko"
+    ),
     packages: packages,
     settings: .ccRecorder,
     targets: [

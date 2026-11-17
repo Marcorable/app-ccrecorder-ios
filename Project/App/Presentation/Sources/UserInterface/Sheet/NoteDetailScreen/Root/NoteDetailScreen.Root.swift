@@ -38,7 +38,7 @@ enum NoteDetailScreen {
                         ProgressView()
                     } else {
                         ContentUnavailableView(
-                            "노트를 불러올 수 없습니다",
+                            String(localized: .NoteDetailScreen.errorLoadFailed),
                             systemImage: "exclamationmark.triangle"
                         )
                     }
@@ -76,7 +76,7 @@ extension NoteDetailScreen.Root {
                             : "text.bubble.fill"
                     )
                         .foregroundStyle(Color(asset: Asset.Logo.Prominent.red))
-                    Text(isVocabulary ? "Vocabulary" : "Sentence")
+                    Text(isVocabulary ? String(localized: .NoteDetailScreen.labelVocabulary) : String(localized: .NoteDetailScreen.labelSentence))
                         .font(.headline)
                 }
             }
@@ -84,7 +84,7 @@ extension NoteDetailScreen.Root {
                 Button(
                     action: saveAction,
                     label: {
-                        Text("저장")
+                        Text(.buttonSave)
                             .font(.headline)
                             .tint(Color(asset: Asset.Logo.Muted.green))
                     }

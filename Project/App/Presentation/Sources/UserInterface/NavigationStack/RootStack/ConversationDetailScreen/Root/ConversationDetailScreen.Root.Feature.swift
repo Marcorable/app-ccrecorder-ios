@@ -309,9 +309,9 @@ extension ConversationDetailScreen.Root.Feature {
         switch action {
             case .failed(let failure):
                 let message = switch failure {
-                    case .system:        "녹음 파일을 준비하지 못했습니다"
-                    case .fileNotFound:  "녹음 파일을 찾을 수 없습니다"
-                    case .prepareFailed: "녹음 파일을 준비하지 못했습니다"
+                    case .system:        String(localized: .ConversationDetailScreen.errorRecordFileSystemFailed)
+                    case .fileNotFound:  String(localized: .ConversationDetailScreen.errorRecordFileNotFound)
+                    case .prepareFailed: String(localized: .ConversationDetailScreen.errorRecordFilePrepareFailed)
                 }
                 state.alert = .playbackFailed(message: message)
                 return .none
