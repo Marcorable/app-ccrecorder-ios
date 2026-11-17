@@ -10,14 +10,30 @@ public enum CCRecorderProject {
 public extension Settings {
 
     static var ccRecorder: Self {
+        .settings(base: ccRecorderBase)
+    }
+
+    static var ccRecorderPresentation: Self {
         .settings(
-            base: [
-                "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": "YES",
-                "DEVELOPMENT_TEAM": "9486RJPBM5",
-                "SWIFT_EMIT_LOC_STRINGS": "YES",
-                "SWIFT_VERSION": "5.0",
-            ]
+            base: ccRecorderBase.merging(
+                ["STRING_CATALOG_GENERATE_SYMBOLS": "YES"],
+                uniquingKeysWith: { _, new in new }
+            )
         )
+    }
+
+}
+
+private extension Settings {
+
+    static var ccRecorderBase: SettingsDictionary {
+        [
+            "ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS": "YES",
+            "DEVELOPMENT_TEAM": "9486RJPBM5",
+            "LOCALIZATION_PREFERS_STRING_CATALOGS": "YES",
+            "SWIFT_EMIT_LOC_STRINGS": "YES",
+            "SWIFT_VERSION": "5.0",
+        ]
     }
 
 }
@@ -29,7 +45,8 @@ public extension Target {
         product: Product = .framework,
         buildableFolders: [BuildableFolder],
         resources: ResourceFileElements? = nil,
-        dependencies: [TargetDependency] = []
+        dependencies: [TargetDependency] = [],
+        settings: Settings = .ccRecorder
     ) -> Self {
         .target(
             name: name,
@@ -41,7 +58,7 @@ public extension Target {
             resources: resources,
             buildableFolders: buildableFolders,
             dependencies: dependencies,
-            settings: .ccRecorder
+            settings: settings
         )
     }
 
