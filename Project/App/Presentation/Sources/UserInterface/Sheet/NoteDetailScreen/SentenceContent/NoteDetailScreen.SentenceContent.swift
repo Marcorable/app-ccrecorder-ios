@@ -10,12 +10,12 @@ extension NoteDetailScreen {
         var body: some View {
             VStack(alignment: .leading) {
                 InputField(
-                    title: "문장 Original",
+                    title: String(localized: .NoteDetailScreen.sentenceContentLabelOriginal),
                     iconName: "e.circle.fill",
                     text: $original
                 )
                 InputField(
-                    title: "번역 Translation",
+                    title: String(localized: .NoteDetailScreen.contentLabelTranslation),
                     iconName: "k.circle.fill",
                     text: $translation
                 )

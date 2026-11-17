@@ -13,9 +13,9 @@ extension MainScreen {
                 if let rows = store.rows {
                     if rows.isEmpty {
                         ContentUnavailableView(
-                            "No Conversations",
+                            String(localized: .MainScreen.conversationListLabelEmptyTitle),
                             systemImage: "waveform",
-                            description: Text("Record a conversation to see it here.")
+                            description: Text(.MainScreen.conversationListLabelEmptyDescription)
                         )
                     } else {
                         List {
@@ -34,7 +34,7 @@ extension MainScreen {
                     ProgressView()
                 }
             }
-            .navigationTitle("Conversation")
+            .navigationTitle(String(localized: .MainScreen.conversationListTitleNavigation))
             .task {
                 await store.send(.view(.task)).finish()
             }

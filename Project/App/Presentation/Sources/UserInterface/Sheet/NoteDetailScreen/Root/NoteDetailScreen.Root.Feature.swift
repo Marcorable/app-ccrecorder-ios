@@ -170,15 +170,15 @@ extension AlertState where Action == NoteDetailScreen.Root.Feature.Action.Alert 
     static var saveFailed: Self {
         .init(
             title: {
-                TextState("노트 저장 실패")
+                TextState(String(localized: .NoteDetailScreen.errorSaveFailed))
             },
             actions: {
                 ButtonState(role: .cancel) {
-                    TextState("확인")
+                    TextState(String(localized: .buttonConfirm))
                 }
             },
             message: {
-                TextState("잠시 후 다시 시도해 주세요")
+                TextState(String(localized: .errorTryAgainLater))
             }
         )
     }

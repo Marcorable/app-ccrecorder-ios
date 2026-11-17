@@ -19,11 +19,11 @@ extension ConversationDetailScreen.Editor {
                     },
                     label: {
                         HStack {
-                            Text("Conversation Information")
+                            Text(.labelConversationInformation)
                                 .font(.headline)
                             Spacer()
                             if store.isEditing {
-                                Text("완료")
+                                Text(.ConversationDetailScreen.informationBoxButtonDone)
                             }
                             Image(systemName: "chevron.right")
                                 .foregroundStyle(Color(asset: Asset.Logo.Muted.green))
@@ -34,31 +34,31 @@ extension ConversationDetailScreen.Editor {
                 if store.isEditing {
                     VStack {
                         HStack {
-                            Text("주제")
+                            Text(.ConversationDetailScreen.informationBoxLabelTopic)
                                 .font(.body)
                                 .fontWeight(.bold)
                             TextField(
-                                "Topic",
+                                String(localized: .labelTopicInput),
                                 text: Binding(
                                     get: { store.topic },
                                     set: { store.send(.view(.topicChanged($0))) }
                                 ),
-                                prompt: Text("주제를 입력하세요")
+                                prompt: Text(.ConversationDetailScreen.informationBoxPromptTopicEdit)
                             )
                             .textFieldStyle(.roundedBorder)
                         }
                         .focused(focusedField, equals: .infoTopic)
                         HStack {
-                            Text("참여")
+                            Text(.ConversationDetailScreen.informationBoxLabelParticipant)
                                 .font(.body)
                                 .fontWeight(.bold)
                             TextField(
-                                "Party",
+                                String(localized: .ConversationDetailScreen.informationBoxLabelParticipantInput),
                                 text: Binding(
                                     get: { store.partyInput },
                                     set: { store.send(.view(.partyInputChanged($0))) }
                                 ),
-                                prompt: Text("참여인원을 추가하세요 (공백 분리)")
+                                prompt: Text(.ConversationDetailScreen.informationBoxPromptParticipantSpaceSeparated)
                             )
                             .textFieldStyle(.roundedBorder)
                             Button(
@@ -74,7 +74,7 @@ extension ConversationDetailScreen.Editor {
                         if !store.parties.isEmpty {
                             ScrollView(.horizontal, showsIndicators: true) {
                                 HStack(alignment: .center) {
-                                    Text("\(store.parties.count)명")
+                                    Text(.ConversationDetailScreen.informationBoxLabelParticipantCount(store.parties.count))
                                         .font(.body)
                                         .fontWeight(.bold)
                                     LazyHGrid(rows: [.init(.flexible())]) {

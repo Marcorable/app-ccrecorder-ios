@@ -1,0 +1,94 @@
+{
+  "sourceLanguage":  "ko",
+  "strings":  {
+    "content.label.translation":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "번역 Translation"
+          }
+        }
+      }
+    },
+    "error.load_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "노트를 불러올 수 없습니다"
+          }
+        }
+      }
+    },
+    "error.save_failed":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "노트 저장 실패"
+          }
+        }
+      }
+    },
+    "label.sentence":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Sentence"
+          }
+        }
+      }
+    },
+    "label.vocabulary":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "Vocabulary"
+          }
+        }
+      }
+    },
+    "sentenceContent.label.original":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "문장 Original"
+          }
+        }
+      }
+    },
+    "vocabularyContent.label.original":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "단어 Original"
+          }
+        }
+      }
+    },
+    "vocabularyContent.prompt.translation":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "번역"
+          }
+        }
+      }
+    }
+  },
+  "version":  "1.0"
+}

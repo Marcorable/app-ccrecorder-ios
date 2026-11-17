@@ -9,6 +9,7 @@ paths:
 
 - 순서·선택·노출·활성화와 사용자 동작 판단에 쓰는 조건은 선택한 아키텍처의 상태 컨테이너가 enum, ID, Bool 같은 프레임워크 중립 타입으로 소유한다.
 - `Asset`, `Color`, `Image`, `Font`, `LocalizedStringKey` 같은 최종 리소스 매핑은 View 계층이 소유한다.
+- 사용자 노출 문자열의 Catalog 소유권, 키 이름과 생성 심벌 사용은 `localization.md`를 따른다.
 - 상태 컨테이너가 리소스를 저장하려고 SwiftUI나 UI 리소스 모듈을 import하지 않는다.
 - 상태 전환과 무관한 순수 장식 상수는 View에 둘 수 있다.
 

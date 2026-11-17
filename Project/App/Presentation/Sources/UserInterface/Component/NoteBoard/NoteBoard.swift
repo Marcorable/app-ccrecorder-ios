@@ -11,9 +11,9 @@ struct NoteBoard: View {
             if let rows {
                 if rows.isEmpty {
                     ContentUnavailableView(
-                        "No Notes",
+                        String(localized: .noteBoardLabelEmptyTitle),
                         systemImage: "note.text",
-                        description: Text("Notes from your conversations will appear here.")
+                        description: Text(.noteBoardLabelEmptyDescription)
                     )
                 } else {
                     List {

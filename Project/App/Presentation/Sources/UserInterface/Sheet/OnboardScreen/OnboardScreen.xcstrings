@@ -1,0 +1,17 @@
+{
+  "sourceLanguage":  "ko",
+  "strings":  {
+    "button.start":  {
+      "extractionState":  "manual",
+      "localizations":  {
+        "ko":  {
+          "stringUnit":  {
+            "state":  "translated",
+            "value":  "앱 시작하기"
+          }
+        }
+      }
+    }
+  },
+  "version":  "1.0"
+}

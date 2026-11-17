@@ -39,14 +39,14 @@ extension RecordScreen {
                 }
                 .padding()
                 .background(Color(asset: Asset.Surface.Recorder.muted))
-                .navigationTitle("녹음하기")
+                .navigationTitle(String(localized: .RecordScreen.titleNavigation))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
                         Button(
                             action: { store.send(.view(.requestCancelButtonTapped)) },
                             label: {
-                                Text("취소")
+                                Text(.buttonCancel)
                                     .font(.headline)
                             }
                         )
